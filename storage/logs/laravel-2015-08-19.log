@@ -1,0 +1,26 @@
+[2015-08-19 07:06:30] local.ERROR: exception 'RuntimeException' with message 'The "-p" option does not exist.' in /Applications/MAMP/htdocs/Tweads/stripe2/vendor/symfony/console/Symfony/Component/Console/Input/ArgvInput.php:128
+Stack trace:
+#0 /Applications/MAMP/htdocs/Tweads/stripe2/vendor/symfony/console/Symfony/Component/Console/Input/ArgvInput.php(109): Symfony\Component\Console\Input\ArgvInput->parseShortOptionSet('port')
+#1 /Applications/MAMP/htdocs/Tweads/stripe2/vendor/symfony/console/Symfony/Component/Console/Input/ArgvInput.php(88): Symfony\Component\Console\Input\ArgvInput->parseShortOption('-port')
+#2 /Applications/MAMP/htdocs/Tweads/stripe2/vendor/symfony/console/Symfony/Component/Console/Input/Input.php(61): Symfony\Component\Console\Input\ArgvInput->parse()
+#3 /Applications/MAMP/htdocs/Tweads/stripe2/vendor/symfony/console/Symfony/Component/Console/Command/Command.php(229): Symfony\Component\Console\Input\Input->bind(Object(Symfony\Component\Console\Input\InputDefinition))
+#4 /Applications/MAMP/htdocs/Tweads/stripe2/vendor/laravel/framework/src/Illuminate/Console/Command.php(101): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#5 /Applications/MAMP/htdocs/Tweads/stripe2/vendor/symfony/console/Symfony/Component/Console/Application.php(874): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#6 /Applications/MAMP/htdocs/Tweads/stripe2/vendor/symfony/console/Symfony/Component/Console/Application.php(195): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Foundation\Console\ServeCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 /Applications/MAMP/htdocs/Tweads/stripe2/vendor/symfony/console/Symfony/Component/Console/Application.php(126): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#8 /Applications/MAMP/htdocs/Tweads/stripe2/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(94): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#9 /Applications/MAMP/htdocs/Tweads/stripe2/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#10 {main}  
+[2015-08-19 07:20:10] local.ERROR: exception 'RuntimeException' with message 'The "-p" option does not exist.' in /Applications/MAMP/htdocs/Tweads/stripe2/vendor/symfony/console/Symfony/Component/Console/Input/ArgvInput.php:128
+Stack trace:
+#0 /Applications/MAMP/htdocs/Tweads/stripe2/vendor/symfony/console/Symfony/Component/Console/Input/ArgvInput.php(109): Symfony\Component\Console\Input\ArgvInput->parseShortOptionSet('p=9000')
+#1 /Applications/MAMP/htdocs/Tweads/stripe2/vendor/symfony/console/Symfony/Component/Console/Input/ArgvInput.php(88): Symfony\Component\Console\Input\ArgvInput->parseShortOption('-p=9000')
+#2 /Applications/MAMP/htdocs/Tweads/stripe2/vendor/symfony/console/Symfony/Component/Console/Input/Input.php(61): Symfony\Component\Console\Input\ArgvInput->parse()
+#3 /Applications/MAMP/htdocs/Tweads/stripe2/vendor/symfony/console/Symfony/Component/Console/Command/Command.php(229): Symfony\Component\Console\Input\Input->bind(Object(Symfony\Component\Console\Input\InputDefinition))
+#4 /Applications/MAMP/htdocs/Tweads/stripe2/vendor/laravel/framework/src/Illuminate/Console/Command.php(101): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#5 /Applications/MAMP/htdocs/Tweads/stripe2/vendor/symfony/console/Symfony/Component/Console/Application.php(874): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#6 /Applications/MAMP/htdocs/Tweads/stripe2/vendor/symfony/console/Symfony/Component/Console/Application.php(195): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Foundation\Console\ServeCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 /Applications/MAMP/htdocs/Tweads/stripe2/vendor/symfony/console/Symfony/Component/Console/Application.php(126): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#8 /Applications/MAMP/htdocs/Tweads/stripe2/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(94): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#9 /Applications/MAMP/htdocs/Tweads/stripe2/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#10 {main}  

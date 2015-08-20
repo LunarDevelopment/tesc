@@ -11,7 +11,7 @@ return [
 	'live_secret' => '',
     'twitter_key' => 'Z9eW7RJfRCvmOLEKwnwFCokKZ',
     'twitter_secret' => '5L4Okm37oUyC1ghnGAFkdpBMAUXn9QmmsQGfCAC3EFWGvmpF6B',
-    'twitter_callback' => ' http://127.0.0.1:8000/auth/twitter',
+    'twitter_callback' => 'http://127.0.0.1:8000/auth/twitter',
 	'yahoo_secret' => '',
 
     'stripe' => [
