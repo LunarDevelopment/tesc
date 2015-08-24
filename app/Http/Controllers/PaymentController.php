@@ -18,86 +18,50 @@ class PaymentController extends Controller {
 		//
 	}
 
-    public function pay(Request $request){
-      
+    public function subscribe(Request $request){
+      $mess = ['status' => "ERROR","message" =>"Somethings not right.."];
       $token  = $request['token'];
       $cutomer_id  =$request['customer_id'];
       $total_price  =$request['total']*100;
 
       $user = User::find($cutomer_id);
-      if (!$user->subscribed()) {
-        $user->subscription('Basic')->create($token);
+      
+      if ($user && ! $user->subscribed()) {
+        // This user is not a paying customer...
+        if ($user->subscription('Basic')->create($token)) {
+          $mess = ['status' => "OK","message" =>"Payment ok"];
+        } else {
+          $mess = ['status' => "ERROR","message" =>"Error Subscribing"];
+        };
       }
-      if ($user->subscribed()) {
-        $mess = ['status' => "OK","message" =>"Payment ok"];
-        return $mess;
-      }else{
-        $mess = ['status' => "ERROR","message" =>"Error submitting payment"];
-        return $mess;
+      else if ($user->subscribed()) {
+        if ($user->onTrial()) {
+          $mess = ['status' => "OK","message" =>"You're still on your trial!"];
+        }
+        else if ($user->onGracePeriod()) {
+          $mess = ['status' => "OK","message" =>"Your subscription is ending soon and not renewing!"];
+        }
+        else {
+          $mess = ['status' => "OK","message" =>"Already Subscribed"];
+        }
       }
+      return $mess; 
     }
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
+    public function postJoin()
+    {
+      $this->user->subscription(Input::get('plan'))->create(Input::get('token'), [
+        'email' => $this->user->email
+      ]);
+      return ['status' => "postJoin","message" =>"postJoin"];
+    }
+    public function getCancel()
+    {
+      $this->user->subscription()->cancel();
+      return ['status' => "getCancel","message" =>"getCancel"];
+    }
+    public function getResume()
+    {
+      $this->user->subscription($this->user->stripe_plan)->resume();
+      return ['status' => "getResume","message" =>"getResume"];
+    }
 }

@@ -16,7 +16,7 @@ angular.module('MyApp')
               'customer_id' : $scope.user.id,
               'total': 1000
             };
-            $http.post('/api/pay', $payInfo).success(function(data){
+            $http.post('/api/subscribe', $payInfo).success(function(data){
               if(data.status=="OK"){
                 $scope.paid= true;
                 $scope.message = data.message;
