@@ -11,6 +11,7 @@ class User extends Model implements BillableContract {
 	 * use Billable;
 	 */
     use Billable;
+
 	/**
 	 * The database table used by the model.
 	 *

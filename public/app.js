@@ -1,4 +1,9 @@
-angular.module('MyApp', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', 'satellizer'])
+angular.module('MyApp', ['ngResource',
+                         'ngMessages',
+                         'ui.router',
+                         'mgcrea.ngStrap',
+                         'satellizer',
+                         'angularPayments'])
   .config(function($stateProvider, $urlRouterProvider, $authProvider) {
     $stateProvider
       .state('home', {
@@ -19,6 +24,11 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStra
         url: '/logout',
         template: null,
         controller: 'LogoutCtrl'
+      })
+      .state('pay', {
+        url: '/pay',
+        templateUrl: 'partials/pay.html',
+        controller: 'PayController'
       })
       .state('profile', {
         url: '/profile',
@@ -107,6 +117,5 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStra
       type: '2.0',
       popupOptions: { width: 1020, height: 618 }
     });
-
 
   });
