@@ -1,0 +1,16 @@
+<form stripe-form="pay.stripeCallback" name="checkoutForm">>
+  <input ng-model="pay.number" placeholder="Card Number" 
+         payments-format="card" payments-validate="card" name="card" />
+  <input ng-model="pay.expiry" placeholder="Expiration" 
+         payments-format="expiry" payments-validate="expiry"                
+         name="expiry" />
+  <input ng-model="pay.cvc" placeholder="CVC" payments-format="cvc" payments-validate="cvc" name="cvc" />
+  <button type="submit">Submit</button>
+</form> 
+<div class="row"  ng-if="pay.paid">
+  <div class="col s12 m4">
+    <div class="card-panel">
+      <h2><p>{{pay.message}}</p></h2>
+    </div>
+  </div>
+</div>
