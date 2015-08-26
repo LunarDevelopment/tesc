@@ -9,11 +9,13 @@ return [
     'github_secret' => '70161f7869abbfa78c3f3518d0249147fe90b3fe',
 	'linkedin_secret' => '',
 	'live_secret' => '',
-    'twitter_key' => 'Z9eW7RJfRCvmOLEKwnwFCokKZ',
-    'twitter_secret' => '5L4Okm37oUyC1ghnGAFkdpBMAUXn9QmmsQGfCAC3EFWGvmpF6B',
+    'twitter_key' => env('TWITTER_CONSUMER_KEY'),
+    'twitter_secret' => env('TWITTER_CONSUMER_SECRET'),
     'twitter_callback' => 'http://127.0.0.1:8000/auth/twitter',
+	#'twitter_key' => 'Z9eW7RJfRCvmOLEKwnwFCokKZ',
+    #'twitter_secret' => '5L4Okm37oUyC1ghnGAFkdpBMAUXn9QmmsQGfCAC3EFWGvmpF6B',
 	'yahoo_secret' => '',
-
+  
     'stripe' => [
       'model'  => 'App\User',
       'key' => env('STRIPE_PUBLIC'),
@@ -96,7 +98,7 @@ return [
 	|
 	*/
 
-	'key' => env('APP_KEY', 'SomeRandomString'),
+    'key' => env('APP_KEY', 'tU2LcwjF1LdFidTawhrHEBzmmFFXmMuB'),
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 

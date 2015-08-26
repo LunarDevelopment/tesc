@@ -18,15 +18,19 @@ class PaymentController extends Controller {
 		//
 	}
 
-    public function subscribe(Request $request){
+    public function subscribe(Request $request)
+    {
       $mess = ['status' => "ERROR","message" =>"Somethings not right.."];
       $token  = $request['token'];
-      $cutomer_id  =$request['customer_id'];
-      $total_price  =$request['total']*100;
+      $cutomer_id = $request['customer_id'];
+      $total_price = $request['total']*100;
 
       $user = User::find($cutomer_id);
       
-      if ($user && ! $user->subscribed()) {
+      if (!$user) {
+        $mess = ['status' => "ERROR","message" =>"User not found, try re-logging in!"];
+      }
+      else if ($user && ! $user->subscribed()) {
         // This user is not a paying customer...
         if ($user->subscription('Basic')->create($token)) {
           $mess = ['status' => "OK","message" =>"Payment ok"];

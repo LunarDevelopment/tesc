@@ -96,8 +96,6 @@ angular
       redirectUri: window.location.origin || window.location.protocol + '//' + window.location.host,
       authorizationEndpoint: 'https://foursquare.com/oauth2/authenticate'
     });
-
-
     $authProvider.httpInterceptor = true; // Add Authorization header to HTTP request
     $authProvider.loginOnSignup = true;
     $authProvider.baseUrl = '/'; // API Base URL for the paths below.
@@ -110,7 +108,7 @@ angular
     $authProvider.signupRoute = '/signup';
     $authProvider.tokenRoot = false; // set the token parent element if the token is not the JSON root
     $authProvider.tokenName = 'token';
-    $authProvider.tokenPrefix = 'satellizer'; // Local Storage name prefix
+    $authProvider.tokenPrefix = 'tweads'; // Local Storage name prefix was: satellizer
     $authProvider.unlinkUrl = '/auth/unlink/';
     $authProvider.unlinkMethod = 'get';
     $authProvider.authHeader = 'Authorization';
