@@ -61,15 +61,13 @@ twitter for marketing, social marketing, social media marketing, marketing on tw
           </li>
           <li class=""><a title="About Social Media Marketing" href="#/about">About</a>
           </li>
-          <li class=""><a title="About Social Media Marketing" href="#/signup">Sign Up</a>
+          <li class="" ng-show="!authenticated"><a title="About Social Media Marketing" href="#/signup">Sign Up</a>
           </li>
-          <li class=""><a title="About Social Media Marketing" href="#/logout">Log Out</a>
+          <li class="" ng-show="authenticated"><a title="About Social Media Marketing" ng-click="logout();">Log Out</a>
           </li>
-          <li class=""><a title="About Social Media Marketing" href="#/profile">Profile</a>
+          <li class=""  ng-show="authenticated"><a title="About Social Media Marketing" href="#/profile">Profile</a>
           </li>
-          <li class=""><a title="About Social Media Marketing" href="#/pay">Pay</a>
-          </li>
-          <li class="" ng-show="authenticated"><a href="#/user">Users</a>
+          <li class=""  ng-show="authenticated"><a title="About Social Media Marketing" href="#/pay">Pay</a>
           </li>
           <li class="" ng-show="!authenticated"><a href="#/login">Log In</a>
           </li>
@@ -83,13 +81,11 @@ twitter for marketing, social marketing, social media marketing, marketing on tw
           </li>
           <li class=""><a title="About Social Media Marketing" href="#/signup">Sign Up</a>
           </li>
-          <li class=""><a title="About Social Media Marketing" href="#/logout">Log Out</a>
+          <li class="" ng-show="authenticated"><a title="About Social Media Marketing" ng-click="logout();">Log Out</a>
           </li>
           <li class=""><a title="About Social Media Marketing" href="#/profile">Profile</a>
           </li>
-          <li class=""><a title="About Social Media Marketing" href="#/pay">Pay</a>
-          </li>
-          <li class="" ng-show="authenticated"><a href="#/user">Users</a>
+          <li class=""  ng-show="authenticated"><a title="About Social Media Marketing" href="#/pay">Pay</a>
           </li>
           <li class="" ng-show="!authenticated"><a href="#/login">Log In</a>
           </li>
@@ -184,7 +180,10 @@ twitter for marketing, social marketing, social media marketing, marketing on tw
       ga('send', 'pageview');
     </script>
 
-
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script>
+      Stripe.setPublishableKey('pk_test_VZy9ghVSzKWmsFYaeCtVATZ6');
+    </script>
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>

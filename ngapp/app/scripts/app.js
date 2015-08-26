@@ -101,9 +101,9 @@ angular
     $authProvider.httpInterceptor = true; // Add Authorization header to HTTP request
     $authProvider.loginOnSignup = true;
     $authProvider.baseUrl = '/'; // API Base URL for the paths below.
-    $authProvider.loginRedirect = '/';
-    $authProvider.logoutRedirect = '/';
-    $authProvider.signupRedirect = '/login';
+    $authProvider.loginRedirect = '/profile';
+    $authProvider.logoutRedirect = '/login';
+    $authProvider.signupRedirect = '/';
     $authProvider.loginUrl = '/auth/login';
     $authProvider.signupUrl = '/auth/signup';
     $authProvider.loginRoute = '/login';
@@ -129,6 +129,42 @@ angular
       popupOptions: {
         width: 1020,
         height: 618
+      }
+    });
+  })
+  .run(function ($rootScope, $location, $auth) {
+    // global logout function
+    $rootScope.logout = $auth.logout();
+    // $stateChangeStart is fired whenever the state changes. We can use some parameters
+    // such as toState to hook into details about the state as it is changing
+    $rootScope.$on('$routeChangeStart', function (event) {
+      var isAuthed = $auth.isAuthenticated();
+      // Grab the user from local storage and parse it to an object
+      // If there is any user data in local storage then the user is quite
+      // likely authenticated. If their token is expired, or if they are
+      // otherwise not actually authenticated, they will be redirected to
+      // the auth state because of the rejected request anyway
+      if (!isAuthed) {
+        // The user's authenticated state gets flipped to
+        // true so we can now show parts of the UI that rely
+        // on the user being logged in
+        $rootScope.authenticated = false;
+        // Putting the user's data on $rootScope allows
+        // us to access it anywhere across the app. Here
+        // we are grabbing what is in local storage
+        //$rootScope.currentUser = user;
+        // If the user is logged in and we hit the auth route we don't need
+        // to stay there and can send the user to the main state
+        /*if ($location.path() !== "/" || "/contact" || "/about" || "/login" || "/signup") {
+          // Preventing the default behavior allows us to use $state.go
+          // to change states
+          event.preventDefault();
+          // go to the "main" state which in our case is users
+          $location.path("/login");
+        }*/
+      }
+      else if (isAuthed) {
+        $rootScope.authenticated = true; 
       }
     });
   });
