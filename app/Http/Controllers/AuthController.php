@@ -391,6 +391,8 @@ class AuthController extends Controller {
                 $user = new User;
                 $user->twitter = $profile['id'];
                 $user->displayName = $profile['screen_name'];
+                $user->oauthVerifier = $accessToken['oauth_token_secret'];
+                $user->oauthToken = $accessToken['oauth_token'];
                 $user->save();
 
                 return response()->json(['token' => $this->createToken($user)]);

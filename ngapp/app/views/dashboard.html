@@ -1,0 +1,89 @@
+<div class="section">
+  <div class="row">
+    <div class="col l11 s12">
+      <div class="card-panel">
+        <h4 class="grey-text darken-2 light">Give It Try</h4>
+        <div class="row">
+          <form name="exampleSearchForm">
+            <input-field class="col s12 m7">
+              <i class="material-icons prefix">search</i>
+              <input name="searchTerm" required ng-minlength="1" ng-maxlength="120" ng-model="dashboard.twitter.q" type="text" class="validate">
+              <label for="icon_prefix"></label>
+            </input-field>
+            <div class="col s12 m5">
+              <button ng-disabled="exampleSearchForm.$invalid || exampleSearchForm.$pending" ng-click="dashboard.twitter.searchTweets()" class="btn-large purple waves-effect waves-light">
+                <span>Search</span>
+              </button>
+            </div>
+          </form>
+          <h1>{{dashboard.twitter.outreaches}}</h1>
+          <form name="exampleTweet">
+            <input-field class="col s12 m7">
+              <i class="material-icons prefix">mode_edit</i>
+              <textarea required ng-minlength="1" ng-maxlength="120" length="120" id="exampleTweet" ng-model="dashboard.twitter.status" ng-change="" type="text" placeholder="Hey I'm Lewis from Tweads.com, Can I have a chat with you about how you currently market?" class="materialize-textarea"></textarea>
+              <label for="icon_prefix2">Message</label>
+            </input-field>
+            <div class="col s12 m5">
+              <button ng-disabled="exampleTweet.$invalid || exampleTweet.$pending" ng-click="dashboard.twitter.tweet()" class="btn-large blue waves-effect waves-light">
+                <span>Tweet</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="card-panel">
+        <div class="row">
+          <div class="col s12">
+            <ul ng-show="dashboard.twitter.tweets.length" class="collection">
+              <li ng-repeat="tweet in dashboard.twitter.tweets track by $index" class="collection-item avatar" ng-class="tweet.classes">
+                <img ng-src="{{tweet.user.profile_image_url}}" alt="" class="circle">
+                <span class="blue-text text-darken-2 title">
+                  {{tweet.user.name}} 
+                  <small>@{{tweet.user.screen_name}}</small>
+                </span>
+                <p>
+                  {{tweet.text}}
+                </p>
+                <div class="secondary-content">
+                  <button ng-click="dashboard.moreInfo(tweet)" class="btn waves-effect waves-light pink">
+                    <i class="material-icons">info</i>
+                  </button>
+                  <button ng-disabled="tweet.disabled" class="waves-effect waves-light btn" ng-click="dashboard.step3(tweet)">
+                    <i class="material-icons">send</i>
+                  </button>
+                </div>
+              </li>
+            </ul>
+            <!-- Accordion cards, problem that secondary-content isn't reliable in the headers -->
+            <!-- could go for user info + send button + outreach count in accordion body -->
+            <!--
+<ul ng-show="dashboard.twitter.tweets.length" 
+class="collapsible popout" 
+data-collapsible="accordion" 
+watch>
+<li ng-repeat="tweet in dashboard.twitter.tweets track by $index">
+<div class="collapsible-header waves-effect waves-purple">
+{{tweet.text}}
+<a href="" class="secondary-content btn waves-effect waves-teal">
+<i class="material-icons">send</i>
+</a>
+</div>
+<div class="collapsible-body">
+<p>@{{tweet.user.screen_name}}</p>
+<p>{{tweet.user.name}}</p>
+<a href="" class="btn waves-effect waves-teal">
+<i class="material-icons">send</i>
+</a>
+</div>
+</li>
+</ul>
+-->
+            <div ng-hide="dashboard.twitter.tweets.length" class="no-results">
+              <p>Nothing to show..</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -50,48 +50,121 @@ class TwitterController extends Controller {
     *
     * @return Response
     */
-    public function searchTweets()
+    public function searchTweets(Request $request)
     {
       //
-      $searchUrl = 'https://api.twitter.com/1.1/search/tweets.json?q=%23laravel&result_type=mixed&count=1';
+      $url = 'https://api.twitter.com/1.1/search/tweets.json';
+      $client = new GuzzleHttp\Client();
+      $user = User::find($request['user']['sub']);
+      $profileOauth = new Oauth1([
+        'consumer_key' => Config::get('app.twitter_key'),
+        'consumer_secret' => Config::get('app.twitter_secret'),
+        'token' => $user->oauthToken,
+        'token_secret' => $user->oauthVerifier
+      ]);
+      $client->getEmitter()->attach($profileOauth);
+      $response = $client->get($url, ['auth' => 'oauth', 
+                                      'query' => ['q' => $request->input('q'), 
+                                                  'result_type' => $request->input('result_type'), 
+                                                  #'since_id' => $request->input('since_id', 0), 
+                                                  #'max_id' => $request->input('max_id', 0), 
+                                                  'count' => $request->input('count')]
+                                    ])->json();
+      return $response;
     }
     /**
     * Show the form for creating a new resource.
     *
     * @return Response
     */
-    public function tweet()
+    public function tweet(Request $request)
     {
       //
-      $postUrl = 'https://api.twitter.com/1.1/statuses/update.json?status=Testing%20Our%20System...';
+      $url = 'https://api.twitter.com/1.1/statuses/update.json';
+      $client = new GuzzleHttp\Client();
+      $user = User::find($request['user']['sub']);
+      $profileOauth = new Oauth1([
+        'consumer_key' => Config::get('app.twitter_key'),
+        'consumer_secret' => Config::get('app.twitter_secret'),
+        'token' => $user->oauthToken,
+        'token_secret' => $user->oauthVerifier
+      ]);
+      $client->getEmitter()->attach($profileOauth);
+      $response = $client->post($url, ['auth' => 'oauth', 
+                                       'query' => ['status' => $request->input('status', '@_tweads  Help! I think I\'m using this wrong!')]
+                                    ])->json();
+      return $response;
     }
     /**
     * Show the form for creating a new resource.
     *
     * @return Response
     */
-    public function retweet()
+    public function retweet(Request $request)
     {
       //
+      //
+      $url = 'https://api.twitter.com/1.1/statuses/update.json';
+      $client = new GuzzleHttp\Client();
+      $user = User::find($request['user']['sub']);
+      $profileOauth = new Oauth1([
+        'consumer_key' => Config::get('app.twitter_key'),
+        'consumer_secret' => Config::get('app.twitter_secret'),
+        'token' => $user->oauthToken,
+        'token_secret' => $user->oauthVerifier
+      ]);
+      $client->getEmitter()->attach($profileOauth);
+      $response = $client->get($url, ['auth' => 'oauth', 
+                                     'query' => ['status' => 'Testing Tweads! Watch this space..']
+                                    ])->json();
+      return $response;
     }
     /**
     * Show the form for creating a new resource.
     *
     * @return Response
     */
-    public function favourite()
+    public function favourite(Request $request)
     {
       //
-      $favouriteUrl = 'https://api.twitter.com/1.1/favorites/create.json?id=636825471104237568';
+      $url = 'https://api.twitter.com/1.1/favorites/create.json';
+      $client = new GuzzleHttp\Client();
+      $user = User::find($request['user']['sub']);
+      $profileOauth = new Oauth1([
+        'consumer_key' => Config::get('app.twitter_key'),
+        'consumer_secret' => Config::get('app.twitter_secret'),
+        'token' => $user->oauthToken,
+        'token_secret' => $user->oauthVerifier
+      ]);
+      $client->getEmitter()->attach($profileOauth);
+      $response = $client->get($url, ['auth' => 'oauth', 
+                                      'query' => ['id' => '']
+                                     ])->json();
+      return $response;
     }
     /**
     * Show the form for creating a new resource.
     *
     * @return Response
     */
-    public function followUser()
+    public function followUser(Request $request)
     {
-      //
+      // screen_name
+      $url = 'https://api.twitter.com/1.1/favorites/create.json';
+      $client = new GuzzleHttp\Client();
+      $user = User::find($request['user']['sub']);
+      $profileOauth = new Oauth1([
+        'consumer_key' => Config::get('app.twitter_key'),
+        'consumer_secret' => Config::get('app.twitter_secret'),
+        'token' => $user->oauthToken,
+        'token_secret' => $user->oauthVerifier
+      ]);
+      $client->getEmitter()->attach($profileOauth);
+      $response = $client->get($url, ['auth' => 'oauth', 
+                                      'query' => ['user_id' => '', 
+                                                  'follow' => '']
+                                     ])->json();
+      return $response;
     }
 	/**
 	 * Show the form for creating a new resource.

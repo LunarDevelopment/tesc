@@ -59,6 +59,11 @@ angular
         controller: 'PayCtrl',
         controllerAs: 'pay'
       })
+      .when('/dashboard', {
+        templateUrl: 'views/dashboard.html',
+        controller: 'DashboardCtrl',
+        controllerAs: 'dashboard'
+      })
       .otherwise({
         redirectTo: '/'
       });
