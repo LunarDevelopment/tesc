@@ -104,7 +104,7 @@ class TwitterController extends Controller {
     {
       //
       //
-      $url = 'https://api.twitter.com/1.1/statuses/update.json';
+      $url = 'https://api.twitter.com/1.1/statuses/retweet/'.$request->input('id').'.json';
       $client = new GuzzleHttp\Client();
       $user = User::find($request['user']['sub']);
       $profileOauth = new Oauth1([
@@ -114,9 +114,7 @@ class TwitterController extends Controller {
         'token_secret' => $user->oauthVerifier
       ]);
       $client->getEmitter()->attach($profileOauth);
-      $response = $client->get($url, ['auth' => 'oauth', 
-                                     'query' => ['status' => 'Testing Tweads! Watch this space..']
-                                    ])->json();
+      $response = $client->post($url, ['auth' => 'oauth'])->json();
       return $response;
     }
     /**
@@ -137,8 +135,8 @@ class TwitterController extends Controller {
         'token_secret' => $user->oauthVerifier
       ]);
       $client->getEmitter()->attach($profileOauth);
-      $response = $client->get($url, ['auth' => 'oauth', 
-                                      'query' => ['id' => '']
+      $response = $client->post($url, ['auth' => 'oauth', 
+                                      'query' => ['id' => $request->input('id')]
                                      ])->json();
       return $response;
     }
@@ -150,7 +148,7 @@ class TwitterController extends Controller {
     public function followUser(Request $request)
     {
       // screen_name
-      $url = 'https://api.twitter.com/1.1/favorites/create.json';
+      $url = 'https://api.twitter.com/1.1/friendships/create.json';
       $client = new GuzzleHttp\Client();
       $user = User::find($request['user']['sub']);
       $profileOauth = new Oauth1([
@@ -160,9 +158,8 @@ class TwitterController extends Controller {
         'token_secret' => $user->oauthVerifier
       ]);
       $client->getEmitter()->attach($profileOauth);
-      $response = $client->get($url, ['auth' => 'oauth', 
-                                      'query' => ['user_id' => '', 
-                                                  'follow' => '']
+      $response = $client->post($url, ['auth' => 'oauth', 
+                                       'query' => ['screen_name' => $request->input('screen_name')]
                                      ])->json();
       return $response;
     }

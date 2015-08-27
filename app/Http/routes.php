@@ -40,7 +40,7 @@ Route::group(['prefix' => 'twitter'], function()
   Route::post('tweet', ['middleware' => 'auth', 'uses' => 'TwitterController@tweet']);
   Route::post('retweet', ['middleware' => 'auth', 'uses' => 'TwitterController@retweet']);
   Route::post('favourite', ['middleware' => 'auth', 'uses' => 'TwitterController@favourite']);
-  Route::post('follow/{id}', ['middleware' => 'auth', 'uses' => 'TwitterController@followUser']);
+  Route::post('follow', ['middleware' => 'auth', 'uses' => 'TwitterController@followUser']);
 });
 // Initialize Angular.js App Route.
 Route::get('/', 'HomeController@index');

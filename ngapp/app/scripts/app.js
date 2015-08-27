@@ -137,21 +137,21 @@ angular
   })
   .run(function ($rootScope, $location, $auth) {
     // global logout function
-    $rootScope.logout = $auth.logout();
+//    $rootScope.logout = $auth.logout();
     // $stateChangeStart is fired whenever the state changes. We can use some parameters
     // such as toState to hook into details about the state as it is changing
-    $rootScope.$on('$routeChangeStart', function (event) {
+//    $rootScope.$on('$routeChangeStart', function (event) {
       var isAuthed = $auth.isAuthenticated();
       // Grab the user from local storage and parse it to an object
       // If there is any user data in local storage then the user is quite
       // likely authenticated. If their token is expired, or if they are
       // otherwise not actually authenticated, they will be redirected to
       // the auth state because of the rejected request anyway
-      if (!isAuthed) {
+//      if (!isAuthed) {
         // The user's authenticated state gets flipped to
         // true so we can now show parts of the UI that rely
         // on the user being logged in
-        $rootScope.authenticated = false;
+//        $rootScope.authenticated = false;
         // Putting the user's data on $rootScope allows
         // us to access it anywhere across the app. Here
         // we are grabbing what is in local storage
@@ -165,9 +165,9 @@ angular
           // go to the "main" state which in our case is users
           $location.path("/login");
         }*/
-      }
-      else if (isAuthed) {
-        $rootScope.authenticated = true; 
-      }
-    });
+ //     }
+ //     else if (isAuthed) {
+ //       $rootScope.authenticated = true; 
+ //     }
+ //   });
   });

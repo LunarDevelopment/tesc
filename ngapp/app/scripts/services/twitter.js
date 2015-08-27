@@ -12,12 +12,15 @@ angular.module('tweadsApp')
     var twitter = function () {
       this.tweets = [];
       this.busy = false;
-      this.outreaches = null;
+      this.outreaches = 0;
+      this.retweets = 0;
+      this.favourites = 0;
+      this.followed = 0;
       this.status = '';
       this.since_id = null;
       this.until = null;
       this.max_id = null;
-      this.count = 1;
+      this.count = 100;
       this.q = '';
       this.result_type = 'mixed';
       /* * 
@@ -38,7 +41,7 @@ angular.module('tweadsApp')
           result_type: this.result_type || 'mixed',
           count: this.count || 100,
           since_id: this.since_id || null,
-          until: this.until || null,
+          //until: this.until || null,
           max_id: this.max_id || null
         }
       }).success(function (data) {
@@ -69,14 +72,56 @@ angular.module('tweadsApp')
         this.busy = false;
       }.bind(this));
     };
-    twitter.prototype.retweet = function () {
-
+    twitter.prototype.retweet = function (id) {
+      if (this.busy) return;
+      this.busy = true;
+      var url = "/twitter/retweet";
+      $http({
+        url: url,
+        method: "POST",
+        data: {
+          id: id || 0
+        }
+      }).success(function (data) {
+        console.log(data);
+        $window.Materialize.toast('Retweet Success!', 3000);
+        this.retweets += 1;
+        this.busy = false;
+      }.bind(this));
     };
-    twitter.prototype.favourite = function () {
-
+    twitter.prototype.favourite = function (id) {
+      if (this.busy) return;
+      this.busy = true;
+      var url = "/twitter/favourite";
+      $http({
+        url: url,
+        method: "POST",
+        data: {
+          id: id || 0
+        }
+      }).success(function (data) {
+        console.log(data);
+        $window.Materialize.toast('Followed Success!', 3000);
+        this.favourites += 1;
+        this.busy = false;
+      }.bind(this));
     };
-    twitter.prototype.followUser = function () {
-
+  twitter.prototype.followUser = function (screen_name) {
+      if (this.busy) return;
+      this.busy = true;
+      var url = "/twitter/follow";
+      $http({
+        url: url,
+        method: "POST",
+        data: {
+          id: screen_name || '@_tweads'
+        }
+      }).success(function (data) {
+        console.log(data);
+        $window.Materialize.toast('Followed Success!', 3000);
+        this.followed += 1;
+        this.busy = false;
+      }.bind(this));
     };
     twitter.prototype.getLatestTweets = function () {
 
