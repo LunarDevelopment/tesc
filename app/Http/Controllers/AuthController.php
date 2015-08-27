@@ -371,7 +371,8 @@ class AuthController extends Controller {
                 $user->twitter = $profile['id'];
                 #$user->twitterConsumerKey = Config::get('app.twitter_key');
                 #$user->twitterConsumerSecret = Config::get('app.twitter_secret');
-                #$user->oauthToken = $accessToken['oauth_token'];
+                $user->oauthVerifier = $accessToken['oauth_token_secret'];
+                $user->oauthToken = $accessToken['oauth_token'];
                 $user->displayName = $user->displayName || $accessToken['screen_name'];
                 $user->save();
 

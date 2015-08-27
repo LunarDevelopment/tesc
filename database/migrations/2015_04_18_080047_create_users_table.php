@@ -24,9 +24,10 @@ class CreateUsersTable extends Migration {
 			$table->string('google')->nullable();
 			$table->string('linkedin')->nullable();
 			$table->string('twitter')->nullable();
-			$table->string('twitterConsumerKey')->nullable();
-			$table->string('twitterConsumerSecret')->nullable();
+			#$table->string('twitterConsumerKey')->nullable();
+			#$table->string('twitterConsumerSecret')->nullable();
 			$table->string('oauthToken')->nullable();
+            $table->string('oauthVerifier')->nullable();
 			$table->timestamps();
 		});
 	}

@@ -35,7 +35,12 @@ Route::group(['prefix' => 'api'], function()
 // Twitter Routes.
 Route::group(['prefix' => 'twitter'], function()
 {
-  Route::get('dump', ['middleware' => 'auth', 'uses' => 'UserController@dump']);
+  Route::get('dump', ['middleware' => 'auth', 'uses' => 'TwitterController@dump']);
+  Route::post('search', ['middleware' => 'auth', 'uses' => 'TwitterController@searchTweets']);
+  Route::post('tweet', ['middleware' => 'auth', 'uses' => 'TwitterController@tweet']);
+  Route::post('retweet', ['middleware' => 'auth', 'uses' => 'TwitterController@retweet']);
+  Route::post('favourite', ['middleware' => 'auth', 'uses' => 'TwitterController@favourite']);
+  Route::post('follow/{id}', ['middleware' => 'auth', 'uses' => 'TwitterController@followUser']);
 });
 // Initialize Angular.js App Route.
 Route::get('/', 'HomeController@index');

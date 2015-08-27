@@ -32,20 +32,6 @@ class UserController extends Controller {
         return $user;
     }
     /**
-     * Get signed in user's profile.
-     */
-    public function dump(Request $request)
-    {
-      $user = User::find($request['user']['sub']);
-      dd($user);
-      $postUrl = 'https://api.twitter.com/1.1/statuses/update.json?status=Testing%20Our%20System...';
-      $client = new GuzzleHttp\Client();
-      $client->getEmitter();
-      $profile = $client->post($postUrl, ['auth' => 'oauth'])->json();
-      dd($profile);
-    }
-
-    /**
      * Update signed in user's profile.
      */
     public function updateUser(Request $request)
