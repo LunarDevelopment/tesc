@@ -8,9 +8,27 @@
  * Controller of the tweadsApp
  */
 angular.module('tweadsApp')
-  .controller('ProfileCtrl', function ($scope, $auth, Account) {
+  .controller('ProfileCtrl', function ($scope, $auth, Account, $http) {
     var vm = this;
     /**
+     * Get user's profile information.
+     */
+    vm.dump = function () {
+      $http.get('/twitter/dump')
+        .success(function (data) {
+          console.log(data);
+        })
+        .error(function (error) {
+          console.log({
+            content: error,
+            animation: 'fadeZoomFadeDown',
+            type: 'material',
+            duration: 3
+          });
+        });
+    };
+
+      /**
      * Get user's profile information.
      */
     vm.getProfile = function () {

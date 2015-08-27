@@ -32,5 +32,10 @@ Route::group(['prefix' => 'api'], function()
   Route::put('me', ['middleware' => 'auth', 'uses' => 'UserController@updateUser']);
   Route::post('subscribe', ['middleware' => 'auth', 'uses' => 'PaymentController@subscribe']);
 });
+// Twitter Routes.
+Route::group(['prefix' => 'twitter'], function()
+{
+  Route::get('dump', ['middleware' => 'auth', 'uses' => 'UserController@dump']);
+});
 // Initialize Angular.js App Route.
 Route::get('/', 'HomeController@index');

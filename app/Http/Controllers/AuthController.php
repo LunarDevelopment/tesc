@@ -367,10 +367,12 @@ class AuthController extends Controller {
 
                 $token = explode(' ', $request->header('Authorization'))[1];
                 $payload = (array) JWT::decode($token, Config::get('app.token_secret'), array('HS256'));
-
                 $user = User::find($payload['sub']);
                 $user->twitter = $profile['id'];
-                $user->displayName = $user->displayName || $profile['screen_name'];
+                #$user->twitterConsumerKey = Config::get('app.twitter_key');
+                #$user->twitterConsumerSecret = Config::get('app.twitter_secret');
+                #$user->oauthToken = $accessToken['oauth_token'];
+                $user->displayName = $user->displayName || $accessToken['screen_name'];
                 $user->save();
 
                 return response()->json(['token' => $this->createToken($user)]);

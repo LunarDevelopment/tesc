@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Config;
 use JWT;
+use GuzzleHttp;
+use GuzzleHttp\Subscriber\Oauth\Oauth1;
 use App\User;
 
 class UserController extends Controller {
@@ -28,6 +30,19 @@ class UserController extends Controller {
         $user = User::find($request['user']['sub']);
 
         return $user;
+    }
+    /**
+     * Get signed in user's profile.
+     */
+    public function dump(Request $request)
+    {
+      $user = User::find($request['user']['sub']);
+      dd($user);
+      $postUrl = 'https://api.twitter.com/1.1/statuses/update.json?status=Testing%20Our%20System...';
+      $client = new GuzzleHttp\Client();
+      $client->getEmitter();
+      $profile = $client->post($postUrl, ['auth' => 'oauth'])->json();
+      dd($profile);
     }
 
     /**

@@ -5,6 +5,7 @@
         <h5 ng-show="profile.authenticated">Welcome, {{profile.currentUser.name}}</h5>
         <h3>Users</h3>
         <div class="buttons" style="margin-bottom: 10px">
+          <button class="btn btn-primary" ng-click="profile.dump()">Dump</button>
           <button class="btn btn-primary" ng-click="profile.user.getUsers()">Get Users!</button>
           <button class="btn btn-danger" ng-click="profile.user.logout()">Logout</button>
         </div>
