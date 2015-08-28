@@ -9,126 +9,172 @@
  */
 angular.module('tweadsApp')
   .factory('Twitter', function ($http, $window) {
-    var twitter = function () {
-      this.tweets = [];
-      this.busy = false;
-      this.outreaches = 0;
-      this.retweets = 0;
-      this.favourites = 0;
-      this.followed = 0;
-      this.status = '';
-      this.since_id = null;
-      this.until = null;
-      this.max_id = null;
-      this.count = 100;
-      this.q = '';
-      this.result_type = 'mixed';
-      /* * 
-       * mixed: Include both popular and real time results in the response.
-       * recent: return only the most recent results in the response
-       * popular: return only the most popular results in the response.
-       * */
-    };
-    twitter.prototype.searchTweets = function () {
-      if (this.busy) return;
-      this.busy = true;
+    var vm = {};
+    vm.tweets = [];
+    vm.busy = false;
+    vm.outreaches = 0;
+    vm.retweets = 0;
+    vm.favourites = 0;
+    vm.followed = 0;
+    vm.status = '';
+    vm.since_id = null;
+    vm.until = null;
+    vm.max_id = null;
+    vm.count = 100;
+    vm.q = '';
+    vm.result_type = 'mixed';
+    /* * 
+     * mixed: Include both popular and real time results in the response.
+     * recent: return only the most recent results in the response
+     * popular: return only the most popular results in the response.
+     * */
+    vm.searchTweets = function () {
+      if (vm.busy) {
+        return;
+      }
+      vm.busy = true;
       var url = "/twitter/search";
       $http({
         url: url,
         method: "GET",
         params: {
-          q: this.q,
-          result_type: this.result_type || 'mixed',
-          count: this.count || 100,
-          since_id: this.since_id || null,
-          //until: this.until || null,
-          max_id: this.max_id || null
+          q: vm.q,
+          result_type: vm.result_type || 'mixed',
+          count: vm.count || 100,
+          since_id: vm.since_id || null,
+          //until: vm.until || null,
+          max_id: vm.max_id || null
         }
-      }).success(function (data) {
-        var tweets = data.statuses;
-        console.log('tweets: ');
-        console.log(tweets);
-        for (var i = 0; i < tweets.length; i++) {
-          this.tweets.push(tweets[i]);
+      }).then(function (response) {
+        var newTweets = response.data.statuses;
+        console.log('newTweets: ');
+        console.log(newTweets);
+        for (var i = 0; i < newTweets.length; i++) {
+          vm.tweets.push(newTweets[i]);
         }
-        this.since_id = this.tweets[this.tweets.length - 1].id_str;
-        this.busy = false;
-      }.bind(this));
+        vm.since_id = vm.tweets[vm.tweets.length - 1].id_str;
+        vm.busy = false;
+      }, function (response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        console.log(response);
+        angular.forEach(response.data.errors, function(value, key){
+          $window.Materialize.toast(value.message, 3000);
+        });
+      });
     };
-    twitter.prototype.tweet = function () {
-      if (this.busy) return;
-      this.busy = true;
+    vm.tweet = function () {
+      if (vm.busy) {
+        return;
+      }
+      vm.busy = true;
       var url = "/twitter/tweet";
       $http({
         url: url,
         method: "POST",
-        data: {
-          status: this.status || '@_tweads Help! I think I\'m using this wrong!'
+        response: {
+          status: vm.status || '@_tweads Help! I think I\'m using this wrong!'
         }
-      }).success(function (data) {
-        console.log(data);
-        $window.Materialize.toast('Twead Success!', 3000);
-        this.outreaches += 1;
-        this.busy = false;
-      }.bind(this));
+      }).then(function (response) {
+        console.log(response);
+        $window.Materialize.toast('Twead then!', 3000);
+        vm.outreaches += 1;
+        vm.busy = false;
+      }, function (response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        console.log(response);
+        angular.forEach(response.data.errors, function(value, key){
+          $window.Materialize.toast(value.message, 3000);
+        });
+      });
     };
-    twitter.prototype.retweet = function (id) {
-      if (this.busy) return;
-      this.busy = true;
+    vm.retweet = function (id) {
+      if (vm.busy) {
+        return;
+      }
+      vm.busy = true;
       var url = "/twitter/retweet";
       $http({
         url: url,
         method: "POST",
-        data: {
+        response: {
           id: id || 0
         }
-      }).success(function (data) {
-        console.log(data);
-        $window.Materialize.toast('Retweet Success!', 3000);
-        this.retweets += 1;
-        this.busy = false;
-      }.bind(this));
+      }).then(function (response) {
+        console.log(response);
+        $window.Materialize.toast('Retweet then!', 3000);
+        vm.retweets += 1;
+        vm.busy = false;
+      }, function (response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        console.log(response);
+        angular.forEach(response.data.errors, function(value, key){
+          $window.Materialize.toast(value.message, 3000);
+        });
+      });
     };
-    twitter.prototype.favourite = function (id) {
-      if (this.busy) return;
-      this.busy = true;
+    vm.favourite = function (id) {
+      if (vm.busy) {
+        return;
+      }
+      vm.busy = true;
       var url = "/twitter/favourite";
       $http({
         url: url,
         method: "POST",
-        data: {
+        response: {
           id: id || 0
         }
-      }).success(function (data) {
-        console.log(data);
-        $window.Materialize.toast('Followed Success!', 3000);
-        this.favourites += 1;
-        this.busy = false;
-      }.bind(this));
+      }).then(function (response) {
+        console.log(response);
+        $window.Materialize.toast('Followed then!', 3000);
+        vm.favourites += 1;
+        vm.busy = false;
+      }, function (response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        console.log(response);
+        angular.forEach(response.data.errors, function(value, key){
+          $window.Materialize.toast(value.message, 3000);
+        });
+      });
     };
-  twitter.prototype.followUser = function (screen_name) {
-      if (this.busy) return;
-      this.busy = true;
+    vm.followUser = function (screen_name) {
+      if (vm.busy) {
+        return;
+      }
+      vm.busy = true;
       var url = "/twitter/follow";
       $http({
         url: url,
         method: "POST",
-        data: {
+        response: {
           id: screen_name || '@_tweads'
         }
-      }).success(function (data) {
-        console.log(data);
-        $window.Materialize.toast('Followed Success!', 3000);
-        this.followed += 1;
-        this.busy = false;
-      }.bind(this));
+      }).then(function (response) {
+        console.log(response);
+        $window.Materialize.toast('Followed then!', 3000);
+        vm.followed += 1;
+        vm.busy = false;
+      }, function (response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        console.log(response);
+        angular.forEach(response.data.errors, function(value, key){
+          $window.Materialize.toast(value.message, 3000);
+        });
+      });
     };
-    twitter.prototype.getLatestTweets = function () {
+    vm.getLatestTweets = function () {
 
     };
-    twitter.prototype.nextPage = function () {
-      if (this.busy) return;
-      this.busy = true;
+    vm.nextPage = function () {
+      if (vm.busy) {
+        return;
+      }
+      vm.busy = true;
       var url = "exampleTweets.json";
       $http({
         url: url,
@@ -136,16 +182,23 @@ angular.module('tweadsApp')
         params: {
           count: 100
         }
-      }).success(function (data) {
-        var tweets = data.statuses;
+      }).then(function (response) {
+        var tweets = response.data.statuses;
         console.log('tweets: ');
         console.log(tweets);
         for (var i = 0; i < tweets.length; i++) {
-          this.tweets.push(tweets[i]);
+          vm.tweets.push(tweets[i]);
         }
-        this.since_id = this.tweets[this.tweets.length - 1];
-        this.busy = false;
-      }.bind(this));
+        vm.since_id = vm.tweets[vm.tweets.length - 1];
+        vm.busy = false;
+      }, function (response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        console.log(response);
+        angular.forEach(response.data.errors, function(value, key){
+          $window.Materialize.toast(value.message, 3000);
+        });
+      });
     };
-    return twitter;
+  return vm;
   });

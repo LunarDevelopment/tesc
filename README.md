@@ -13,6 +13,8 @@
 * add timeout  failsafe to $http config objects. milliseconds or callback function 
 * ng-show = dashboard.twitter.busy === true 
 * twitter.js line 80 + twittercontroller.php retweet id | favourite ID | follow user / everything else should default to a _tweads promo tweet. 
+* rewrite twitterjs to use .then, functionality. .success is depreicated.
+* twittercontroller.php use GuzzleHttp\Exception\BadResponseException and process
 * Contact us page probably needs: Not sending the JWT for specific requests
 ```
 // This request will NOT send the token as it has skipAuthentication

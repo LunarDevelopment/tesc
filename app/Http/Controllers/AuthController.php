@@ -57,7 +57,6 @@ class AuthController extends Controller {
         {
             return response()->json(['message' => 'Wrong email and/or password'], 401);
         }
-
         if (Hash::check($password, $user->password))
         {
             unset($user->password);

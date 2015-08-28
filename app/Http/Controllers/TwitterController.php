@@ -5,6 +5,8 @@ use Config;
 use JWT;
 use GuzzleHttp;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
+use GuzzleHttp\Exception\BadResponseException;
+use Guzzle\Http\Exception\ServerErrorResponseException;
 use App\User;
 
 class TwitterController extends Controller {
@@ -90,10 +92,17 @@ class TwitterController extends Controller {
         'token_secret' => $user->oauthVerifier
       ]);
       $client->getEmitter()->attach($profileOauth);
-      $response = $client->post($url, ['auth' => 'oauth', 
-                                       'query' => ['status' => $request->input('status', '@_tweads  Help! I think I\'m using this wrong!')]
-                                    ])->json();
-      return $response;
+      try {
+
+        $response = $client->post($url, ['auth' => 'oauth', 
+                                         'query' => ['status' => $request->input('status', '@_tweads  Help! I think I\'m using this wrong!')]
+                                        ])->json();
+      } catch (BadResponseException $e) {
+        return response($e->getResponse()->getBody(), $e->getResponse()->getStatusCode());
+        # $e->getResponse()->getBody();
+      }
+      
+      #return $response;
     }
     /**
     * Show the form for creating a new resource.

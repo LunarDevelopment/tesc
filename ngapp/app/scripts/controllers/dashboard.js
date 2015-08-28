@@ -14,6 +14,6 @@ angular.module('tweadsApp')
       duration: 1000,
       message: 'You reached out!'
     };
-    vm.twitter = new Twitter();
+    vm.twitter = Twitter;
     vm.tweets = null;
   });
