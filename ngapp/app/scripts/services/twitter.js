@@ -23,11 +23,11 @@ angular.module('tweadsApp')
     vm.count = 100;
     vm.q = '';
     vm.result_type = 'mixed';
-    /* * 
+    /* 
      * mixed: Include both popular and real time results in the response.
      * recent: return only the most recent results in the response
      * popular: return only the most popular results in the response.
-     * */
+     */
     vm.searchTweets = function () {
       if (vm.busy) {
         return;

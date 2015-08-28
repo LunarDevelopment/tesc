@@ -15,6 +15,7 @@
 * twitter.js line 80 + twittercontroller.php retweet id | favourite ID | follow user / everything else should default to a _tweads promo tweet. 
 * rewrite twitterjs to use .then, functionality. .success is depreicated.
 * twittercontroller.php use GuzzleHttp\Exception\BadResponseException and process
+* angular config http interceptor for logged out
 * Contact us page probably needs: Not sending the JWT for specific requests
 ```
 // This request will NOT send the token as it has skipAuthentication
