@@ -35,7 +35,7 @@
         <div class="row">
           <div class="col s12">
             <ul ng-show="dashboard.twitter.tweets.length" class="collection">
-              <li ng-repeat="tweet in dashboard.twitter.tweets track by $index" class="collection-item avatar" ng-class="tweet.classes">
+              <li ng-repeat="tweet in dashboard.twitter.tweets track by $index" ng-style="dashboard.getUserClass(tweet.user.profile_sidebar_fill_color)" class="collection-item avatar" ng-class="tweet.classes">
                 <img ng-src="{{tweet.user.profile_image_url}}" alt="" class="circle">
                 <span class="blue-text text-darken-2 title">
                   {{tweet.user.name}} 
@@ -45,19 +45,19 @@
                   {{tweet.text}}
                 </p>
                 <div class="secondary-content">
-                  <button ng-click="dashboard.moreInfo(tweet)" class="btn waves-effect waves-light pink">
+                  <a ng-click="dashboard.moreInfo(tweet)" class=" waves-effect waves-light pink-text ">
                     <i class="material-icons">info</i>
-                  </button>
-                  <button ng-click="dashboard.twitter.retweet(tweet.id_str)" class="btn waves-effect waves-light green">
+                  </a>
+                  <a ng-click="dashboard.twitter.retweet(tweet.id_str)" ng-class="{ 'green-text': tweet.retweeted}" class=" waves-effect waves-light ">
                     <i class="material-icons">autorenew</i>
-                  </button>
-                  <button ng-click="dashboard.twitter.favourite(tweet.id_str)" class="btn waves-effect waves-light amber">
+                  </a>
+                  <a ng-click="dashboard.twitter.favourite(tweet.id_str)" ng-class="{ 'amber-text': tweet.favourited}" class=" waves-effect waves-light ">
                     <i class="material-icons">star</i>
-                  </button>
-                  <button ng-click="dashboard.twitter.followUser(tweet.screen_name)" class="btn waves-effect waves-light orange">
+                  </a>
+                  <a ng-click="dashboard.twitter.followUser(tweet.screen_name)" ng-class="{ 'blue-text': tweet.user.following}" class=" waves-effect waves-light ">
                     <i class="material-icons">person_add</i>
-                  </button>
-                  <button ng-disabled="tweet.disabled" class="waves-effect waves-light btn" ng-click="dashboard.step3(tweet)">
+                  </a>
+                  <button ng-disabled="tweet.disabled" class="waves-effect waves-light purple btn" ng-click="dashboard.step3(tweet)">
                     <i class="material-icons">send</i>
                   </button>
                 </div>

@@ -16,4 +16,10 @@ angular.module('tweadsApp')
     };
     vm.twitter = Twitter;
     vm.tweets = null;
+    vm.getUserClass = function (val) {
+      return {
+        'border-left': 'solid 2px',
+        'border-left-color': '#' + val
+      };
+    };
   });

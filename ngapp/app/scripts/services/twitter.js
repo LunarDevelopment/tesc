@@ -77,7 +77,7 @@ angular.module('tweadsApp')
         }
       }).then(function (response) {
         console.log(response);
-        $window.Materialize.toast('Twead then!', 3000);
+        $window.Materialize.toast('Twead-ed!', 3000);
         vm.outreaches += 1;
         vm.busy = false;
       }, function (response) {
@@ -103,7 +103,7 @@ angular.module('tweadsApp')
         }
       }).then(function (response) {
         console.log(response);
-        $window.Materialize.toast('Retweet then!', 3000);
+        $window.Materialize.toast('Retweeted!', 3000);
         vm.retweets += 1;
         vm.busy = false;
       }, function (response) {
@@ -129,7 +129,7 @@ angular.module('tweadsApp')
         }
       }).then(function (response) {
         console.log(response);
-        $window.Materialize.toast('Followed then!', 3000);
+        $window.Materialize.toast('Favourited!', 3000);
         vm.favourites += 1;
         vm.busy = false;
       }, function (response) {
@@ -151,11 +151,11 @@ angular.module('tweadsApp')
         url: url,
         method: "POST",
         response: {
-          id: screen_name || '@_tweads'
+          screen_name: screen_name || '@_tweads' //screen_name OR user_id 
         }
       }).then(function (response) {
         console.log(response);
-        $window.Materialize.toast('Followed then!', 3000);
+        $window.Materialize.toast('Followed!', 3000);
         vm.followed += 1;
         vm.busy = false;
       }, function (response) {

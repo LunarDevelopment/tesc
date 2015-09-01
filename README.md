@@ -16,8 +16,29 @@
 * rewrite twitterjs to use .then, functionality. .success is depreicated.
 * twittercontroller.php use GuzzleHttp\Exception\BadResponseException and process
 * angular config http interceptor for logged out
-* Contact us page probably needs: Not sending the JWT for specific requests
+* store target ID_str to check who you've contacted before and color / show could accordingly - do this server side and store contact in a db. then pull them in on page load alone with search results. 
+  - http://stackoverflow.com/questions/23829928/comparing-objects-between-2-arrays-in-angularjs
+  - change vm.outreaches to array and do outreaches.length as a counter.. 
+  - can remove the outreaches += 1 and move logic to push array on reply. 
+```javascript
+var promises = [$http.get('/items'), $http.get('/favourites')];
+
+$q.all(promises).then(function (resultsArray) {
+
+$scope.items = resultsArray[0];
+var favourites = resultsArray[1];
+
+$scope.items.forEach(function (item) {
+var matches = favourites.filter(function (f) {
+return f.id === item.id;
+});
+item.favourite = matches.length ? true : false;
+});
+
+});
 ```
+* Contact us page probably needs: Not sending the JWT for specific requests
+```javascript
 // This request will NOT send the token as it has skipAuthentication
 $http({
   url: '/api/endpoint',
