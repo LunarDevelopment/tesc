@@ -93,7 +93,6 @@ class TwitterController extends Controller {
       ]);
       $client->getEmitter()->attach($profileOauth);
       try {
-
         $response = $client->post($url, ['auth' => 'oauth', 
                                          'query' => ['status' => $request->input('status', '@_tweads  Help! I think I\'m using this wrong!')]
                                         ])->json();

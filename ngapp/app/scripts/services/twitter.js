@@ -63,7 +63,7 @@ angular.module('tweadsApp')
         });
       });
     };
-    vm.tweet = function () {
+    vm.tweet = function (recipient = null) {
       if (vm.busy) {
         return;
       }
@@ -73,6 +73,7 @@ angular.module('tweadsApp')
         url: url,
         method: "POST",
         response: {
+          recipient: recipient || null,
           status: vm.status || '@_tweads Help! I think I\'m using this wrong!'
         }
       }).then(function (response) {
