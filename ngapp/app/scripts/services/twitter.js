@@ -63,7 +63,7 @@ angular.module('tweadsApp')
         });
       });
     };
-    vm.tweet = function (recipient = null) {
+    vm.tweet = function (recipient) {
       if (vm.busy) {
         return;
       }
@@ -72,7 +72,7 @@ angular.module('tweadsApp')
       $http({
         url: url,
         method: "POST",
-        response: {
+        data: {
           recipient: recipient || null,
           status: vm.status || '@_tweads Help! I think I\'m using this wrong!'
         }
@@ -99,7 +99,7 @@ angular.module('tweadsApp')
       $http({
         url: url,
         method: "POST",
-        response: {
+        data: {
           id: id || 0
         }
       }).then(function (response) {
@@ -125,7 +125,7 @@ angular.module('tweadsApp')
       $http({
         url: url,
         method: "POST",
-        response: {
+        data: {
           id: id || 0
         }
       }).then(function (response) {
@@ -151,7 +151,7 @@ angular.module('tweadsApp')
       $http({
         url: url,
         method: "POST",
-        response: {
+        data: {
           screen_name: screen_name || '@_tweads' //screen_name OR user_id 
         }
       }).then(function (response) {
