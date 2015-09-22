@@ -33,6 +33,8 @@ twitter for marketing, social marketing, social media marketing, marketing on tw
     <![endif]-->
 
     <!-- Add your site or application content here -->
+    <div class="loading-dialog" data-loading>            
+    </div>
 
     <!-- floating action button -->
     <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
@@ -50,64 +52,29 @@ twitter for marketing, social marketing, social media marketing, marketing on tw
         </li>
       </ul>
     </div>
-    <!-- Nav Bar 
+    <!-- Nav Bar -->
     <nav class="light-blue darken-1" role="navigation">
       <div class="nav-wrapper">
+        <hello-user></hello-user>
         <a id="logo-container" href="#/" class="valign-wrapper brand-logo center">
           <img class="valign" title="Lunar Development, Twitter Marketing Sales Leads" alt="Tweads Developer logo, used for social media marketing, lead generation" src="images/Moon-128.png" width="56px" height="56px">
         </a>
         <ul class="right hide-on-med-and-down">
-          <li class=""><a title="Tweads Home Page" href="#/">Home</a>
-          </li>
-          <li class=""><a title="About Social Media Marketing" href="#/about">About</a>
-          </li>
-          <li class="" ng-show="!authenticated"><a title="About Social Media Marketing" href="#/signup">Sign Up</a>
-          </li>
-          <li class="" ng-show="authenticated"><a title="About Social Media Marketing" ng-click="logout();">Log Out</a>
-          </li>
-          <li class=""  ng-show="authenticated"><a title="About Social Media Marketing" href="#/profile">Profile</a>
-          </li>
-          <li class="" ng-show="authenticated"><a title="About Social Media Marketing" href="#/dashboard">Dashboard</a>
-          </li>
-          <li class=""  ng-show="authenticated"><a title="About Social Media Marketing" href="#/pay">Pay</a>
-          </li>
-          <li class="" ng-show="!authenticated"><a href="#/login">Log In</a>
-          </li>
-          <li class=""><a title="Contact Tweads" href="#/contact">Contact</a>
-          </li>
+          <nav-links></nav-links>
         </ul>
         <ul class="side-nav" id="nav-mobile">
-          <li class=""><a title="Tweads Home Page" href="#/">Home</a>
-          </li>
-          <li class=""><a title="About Social Media Marketing" href="#/about">About</a>
-          </li>
-          <li class=""><a title="About Social Media Marketing" href="#/signup">Sign Up</a>
-          </li>
-          <li class="" ng-show="authenticated"><a title="About Social Media Marketing" ng-click="logout();">Log Out</a>
-          </li>
-          <li class=""><a title="About Social Media Marketing" href="#/profile">Profile</a>
-          </li>
-          <li class="" ng-show="authenticated"><a title="About Social Media Marketing" href="#/dashboard">Dashboard</a>
-          </li>
-          <li class=""  ng-show="authenticated"><a title="About Social Media Marketing" href="#/pay">Pay</a>
-          </li>
-          <li class="" ng-show="!authenticated"><a href="#/login">Log In</a>
-          </li>
-          <li class=""><a title="Contact Tweads" href="#/contact">Contact</a>
-          </li>
+          <nav-links></nav-links>
         </ul>
-        <a title="Navigation button" href="#" class="button-collapse" data-activates="nav-mobile" data-sidenav="left" data-menuwidth="250" data-closeonclick="false">
+        <a title="Navigation button" href="#" class="button-collapse" data-activates="nav-mobile" data-sidenav="left" data-menuwidth="250" data-closeonclick="true">
           <i class="mdi-navigation-menu">
           </i>
         </a>
       </div>
-</nav> -->
+    </nav> <!-- -->
     <!--
 <div class="container"> 
 -->
-    <div>
       <div ng-view=""></div>
-    </div>
     <!-- footer 
     <footer class="page-footer light-green darken-1">
       <div class="container">
@@ -207,6 +174,7 @@ twitter for marketing, social marketing, social media marketing, marketing on tw
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
     <script src="bower_components/satellizer/satellizer.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
@@ -225,6 +193,10 @@ twitter for marketing, social marketing, social media marketing, marketing on tw
         <script src="scripts/directives/passwordstrength.js"></script>
         <script src="scripts/services/twitter.js"></script>
         <script src="scripts/controllers/dashboard.js"></script>
+        <script src="scripts/filters/timestamptoiso.js"></script>
+        <script src="scripts/directives/loading.js"></script>
+        <script src="scripts/directives/navlinks.js"></script>
+        <script src="scripts/directives/hellouser.js"></script>
         <!-- endbuild -->
 </body>
 </html>

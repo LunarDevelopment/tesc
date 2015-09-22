@@ -8,8 +8,8 @@
  * Service in the tweadsApp.
  */
 angular.module('tweadsApp')
-  .factory('Twitter', function ($http, $window) {
-    var vm = {};
+  .service('Twitter', function ($http, $window) {
+    var vm = this;
     vm.tweets = [];
     vm.busy = false;
     vm.outreaches = 0;
@@ -201,5 +201,4 @@ angular.module('tweadsApp')
         });
       });
     };
-  return vm;
   });
