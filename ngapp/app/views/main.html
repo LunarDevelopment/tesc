@@ -15,15 +15,14 @@
           <div class="col l10 m8 s12">
             <span class="blue-text">
               <h4 class="grey-text darken-2 light">
-                Application Name
+                Tweads 
               </h4>
-              <h5 class="grey-text darken-2 light">Product Name</h5>
+              <h5 class="grey-text darken-2 light">Generate leads for your business</h5>
               <p>
-                <a class="waves-effect waves-light  btn-large light-green darken-1" href="">
+                <a class="waves-effect waves-light  btn-large light-green darken-1" href="#/signup">
                   <i class="mdi-av-play-shopping-bag left"></i>
-                  Start Tweading
+                  Start Tweading Now!
                 </a>
-                &nbsp;
                 <a class="waves-effect waves-light  btn-large teal" href="">
                   <i class="mdi-action-credit-card left"></i>
                   Buy Pro £XX.XX*
@@ -34,7 +33,14 @@
                 </span>
               </p>
               <p class="grey-text darken-3">
-                Craft beer Bushwick semiotics, four dollar toast Intelligentsia sriracha Carles pug. Selfies fap vinyl, gastropub XOXO Carles organic direct trade Schlitz slow-carb PBR beard.
+                Low effort. 
+                reuse messages 
+                1 click contacting 
+                reach out 
+                generate buzz 
+                leads 
+                contact 
+                
               </p>
               <p class="grey-text darken-3">
                 Thundercats cornhole narwhal next level try-hard. Scenester food truck shabby chic, pickled sartorial Thundercats 3 wolf moon flexitarian heirloom.
@@ -55,7 +61,7 @@
   <div class="row">
     <div class="col offset-l1 l10 s12">
       <div class="card-panel">
-        <h4 class="grey-text darken-2 light">Application Tabs</h4>
+        <h4 class="grey-text darken-2 light">How it works</h4>
         <ul class="tabs" tabs>
           <li class="tab col s3"><a class="active" href="#test1">Connect</a>
           </li>
@@ -114,7 +120,7 @@
       Make Contact
     </div>
     <div class="col s2 center-align">
-      Re-use Your Message
+      Re-use Your Message with 1 click
     </div>
     <div class="offset-s2 col s8">
       <div class="progress">
@@ -150,53 +156,7 @@
       <div class="card-panel">
         <div class="row">
           <div class="col s12">
-            <ul ng-show="main.twitter.tweets.length" class="collection">
-              <li ng-repeat="tweet in main.twitter.tweets track by $index" class="collection-item avatar" ng-class="tweet.classes">
-                <img ng-src="{{tweet.user.profile_image_url}}" alt="" class="circle">
-                <span class="blue-text text-darken-2 title">
-                  {{tweet.user.name}} 
-                  <small>@{{tweet.user.screen_name}}</small>
-                </span>
-                <p>
-                  {{tweet.text}}
-                </p>
-                <div class="secondary-content">
-                  <button ng-click="main.moreInfo(tweet)" class="btn waves-effect waves-light pink">
-                    <i class="material-icons">info</i>
-                  </button>
-                  <button ng-disabled="tweet.disabled" class="waves-effect waves-light btn" ng-click="main.step3(tweet)">
-                    <i class="material-icons">send</i>
-                  </button>
-                </div>
-              </li>
-            </ul>
-            <!-- Accordion cards, problem that secondary-content isn't reliable in the headers -->
-            <!-- could go for user info + send button + outreach count in accordion body -->
-            <!--
-<ul ng-show="main.twitter.tweets.length" 
-class="collapsible popout" 
-data-collapsible="accordion" 
-watch>
-<li ng-repeat="tweet in main.twitter.tweets track by $index">
-<div class="collapsible-header waves-effect waves-purple">
-{{tweet.text}}
-<a href="" class="secondary-content btn waves-effect waves-teal">
-<i class="material-icons">send</i>
-</a>
-</div>
-<div class="collapsible-body">
-<p>@{{tweet.user.screen_name}}</p>
-<p>{{tweet.user.name}}</p>
-<a href="" class="btn waves-effect waves-teal">
-<i class="material-icons">send</i>
-</a>
-</div>
-</li>
-</ul>
--->
-            <div ng-hide="main.twitter.tweets.length" class="no-results">
-              <p>Nothing to show..</p>
-            </div>
+            <h1>EXAMPLES OR SCREENS OR SOMETHING HERE?! </h1>
           </div>
         </div>
       </div>
