@@ -8,7 +8,7 @@
  * Controller of the tweadsApp
  */
 angular.module('tweadsApp')
-  .controller('ProfileCtrl', function ($scope, $auth, Account, $http) {
+  .controller('ProfileCtrl', function ($rootScope, $scope, $auth, Account, $http) {
     var vm = this;
     /**
      * Get user's profile information.
@@ -35,6 +35,7 @@ angular.module('tweadsApp')
       Account.getProfile()
         .success(function (data) {
           vm.user = data;
+          $rootScope.$storage.user = data;
         })
         .error(function (error) {
           console.log({
@@ -55,6 +56,7 @@ angular.module('tweadsApp')
         displayName: vm.user.displayName,
         email: vm.user.email
       }).then(function () {
+        $rootScope.$storage.user = angular.extend($rootScope.$storage.user, vm.user);
           console.log({
           content: 'Profile has been updated',
           animation: 'fadeZoomFadeDown',

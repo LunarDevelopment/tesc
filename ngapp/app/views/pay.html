@@ -1,4 +1,24 @@
-<form stripe-form="pay.stripeCallback" name="checkoutForm">>
+
+<h1>NEW FORM HTML</h1>
+
+<form bd-submit="charge()" name="paymentForm">
+  <select ng-model="payment.cardType" ng-options="type for type in ['Visa', 'American Express', 'MasterCard']"></select>
+  <input type="text" ng-model="payment.card.number" name="cardNumber" cc-number cc-type="payment.cardType" />
+  <p ng-show="paymentForm.cardNumber.$error.ccNumberType">That's not a valid {{payment.cardType}}</p>
+  <p>CVC</p>
+  <input type="text" ng-model="payment.card.cvc" cc-type="cardNumber.$ccType" />
+  <div cc-exp>
+    <p>Month</p>
+    <input ng-model="payment.card.exp_month" cc-exp-month />
+    <p>Year</p>
+    <input ng-model="payment.card.exp_year" cc-exp-year />
+  </div>
+  <button class="btn-large" submit-button pending="Submitting...">Submit</button>
+</form>
+
+<h1>OLD FORM HTML</h1>
+
+<form stripe-form="pay.stripeCallback" name="checkoutForm">
   <input ng-model="pay.number" placeholder="Card Number" 
          payments-format="card" payments-validate="card" name="card" />
   <input ng-model="pay.expiry" placeholder="Expiration" 

@@ -18,12 +18,17 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'ngStorage',
     'ui.materialize',
     'satellizer',
-    'angularPayments',
-    'ngStorage'
+    'angular-stripe',
+    'credit-cards',
+    'bd.form-state'
   ])
-  .config(function ($routeProvider, $authProvider, $httpProvider, $provide) {
+  .config(function ($routeProvider, $authProvider, $httpProvider, $provide, stripeProvider) {
+
+    stripeProvider.setPublishableKey('pk_test_VZy9ghVSzKWmsFYaeCtVATZ6');
+
     function redirectWhenLoggedOut($q, $injector) {
         return {
           responseError: function (rejection) {

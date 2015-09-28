@@ -51,6 +51,21 @@ class PaymentController extends Controller {
       }
       return $mess; 
     }
+    public function getInvoice(Request $request)
+    {
+      $invoice_id = $request['invoice_id'];
+      $cutomer_id = $request['customer_id'];
+      $user = User::find($cutomer_id);
+      return $user->downloadInvoice($invoice_id, [
+        'vendor'  => 'Your Company',
+        'product' => 'Your Product',
+      ]);
+    }
+    public function getInvoiceList(Request $request)
+    {
+      $cutomer_id = $request['customer_id'];
+      return $invoices = $user->invoices();
+    }
     public function postJoin()
     {
       $this->user->subscription(Input::get('plan'))->create(Input::get('token'), [

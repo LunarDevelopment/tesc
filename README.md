@@ -1,5 +1,11 @@
 ##To Do 
 
+* Have a plans Page which displays PAY modal. - reusable on all pages
+* Display subscription plan in profile 
+* Download invoices in profile
+* Redirect to pay when authed but not subbed. 
+  - Need to check user_>isAuthed() on twitter ctrl. 
+  - in config interceptor something like if msg = not subbed redirect to plans / pay page 
 * free access to reviewers / brand championers ? (chris n G ?) 
 * angular and lav logic to track who has been tweeted to. 
 * outreaches count on main and dashboard 
