@@ -12,12 +12,14 @@ class CreatePostsTable extends Migration {
 	 */
 	public function up()
 	{
-      Schema::create('posts', function(Blueprint $table)
+      Schema::create('products', function(Blueprint $table)
       {
         $table->increments('id');
-        $table->string('title');
-        $table->longText('content');
-        $table->boolean("is_premium");
+        $table->string('title')->nullable();
+        $table->string('image')->nullable();
+        $table->string('alt')->nullable();
+        $table->string('caption')->nullable();
+        $table->longText('content')->nullable();
         $table->timestamps();
       });
 	}
@@ -29,7 +31,7 @@ class CreatePostsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('posts', function(Blueprint $table)
+		Schema::table('products', function(Blueprint $table)
 		{
 			//
 		});

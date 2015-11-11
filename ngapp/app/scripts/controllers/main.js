@@ -14,7 +14,38 @@ angular.module('tweadsApp')
       duration: 1000,
       message: 'You reached out!'
     };
-    vm.twitter = new Twitter();
+    vm.showcasePosts = {
+      mainPost: {
+        id: 1,
+        image: 'http://placehold.it/1024x683',
+        alt: 'Alternative Text',
+        caption: 'Summer is Coming'
+      },
+      subPosts: [
+        {
+          id: 1,
+          image: 'http://placehold.it/1024x683',
+          alt: 'Alternative Text',
+          caption: 'Summer is Coming'
+        }, {
+          id: 1,
+          image: 'http://placehold.it/1024x683',
+          alt: 'Alternative Text',
+          caption: 'Summer is Coming'
+        }, {
+          id: 1,
+          image: 'http://placehold.it/1024x683',
+          alt: 'Alternative Text',
+          caption: 'Summer is Coming'
+        }, {
+          id: 1,
+          image: 'http://placehold.it/1024x683',
+          alt: 'Alternative Text',
+          caption: 'Summer is Coming'
+        } 
+      ]
+    };
+    //vm.twitter = new Twitter();
     vm.tweets = null;
     vm.outreaches = null;
     vm.exampleTweet = '';
